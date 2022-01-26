@@ -23,11 +23,18 @@
     
     <div class="form-group">
         <label for="gender">성별</label><br>
-        <input type="radio" id="male" name="gender" value="M">
+        {% comment %} 
+            <input type="radio" id="male" name="gender" value="M">
             <label for="gender">Male</label><br>
             <input type="radio" id="female" name="gender" value="F">
             <label for="gender">Female</label><br>
-        </div><br/>
+        {% endcomment %}
+
+            <select name="gender" id = "id_gender">
+                <input type="radio" id="male" name="gender" option value="M">Male</option>
+                <input type="radio" id="female" name="gender" option value="F">Female</option>
+        
+    </div><br/>
   
     <div class="form-group">
         <label for="age">나이</label><br/>

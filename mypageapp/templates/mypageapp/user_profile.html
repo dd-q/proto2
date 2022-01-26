@@ -2,7 +2,8 @@
     {% csrf_token %}
     <div class="form-group">
         <label for="profile_img">프사</label>
-        <img class="image" src="{{ form.profile_img.value }}"/>
+        <!--img 크기 고정하는 작업 필요-->
+        <img class="image" src="/media/{{ form.profile_img.value }}"/>
         <input type="file" class="form-control" name="profile_img" id="profile_img"
             value="{{ form.profile_img.value | default_if_none:'' }}">
     </div>
