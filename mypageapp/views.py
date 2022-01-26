@@ -53,11 +53,7 @@ def update_pet(request, id):
             return redirect('mypageapp:update_user', id = id)
     else:
         form = PetForm(instance = profile)
-        return render(request, 'mypageapp/update_pet.html', {'form':form},
+        return render(request, 'mypageapp/pet_profile.html', {'form':form},
         )
 
-
-# def show(request, id):
-    # pet = Pet.objects.get(user_id = id)
-    # return render(request, 'mypageapp/user_profile.html', {'pet':pet})
 

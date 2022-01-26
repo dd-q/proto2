@@ -1,6 +1,10 @@
-
-<h3> MY PET PROFILE </h3>
-<form method='POST' enctype="multipart/form-data">
+<html>
+    {% load static %}
+    <head>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <h3> MY PET PROFILE </h3>
+    </head>
+<form method='post' enctype="multipart/form-data">
     {% csrf_token %}
     
     <div class="form-group">
@@ -12,54 +16,78 @@
     </div>
 
     <div class="form-group">
-        <label for="pet_name">펫이름</label><br/>
-        <input type="text" class="form-control" name="pet_name" id="pet_name"
-            value="{{ form.pet_name.value | default_if_none:'' }}">
-    </div><br/>
-    
-    <div class="form-group">
-        <label for="gender">성별</label><br>
-        {% comment %} 
-            <input type="radio" id="male" name="gender" value="M">
-            <label for="gender">Male</label><br>
-            <input type="radio" id="female" name="gender" value="F">
-            <label for="gender">Female</label><br>
-        {% endcomment %}
+        <label for="pet_name" class="form-label mt-4">MY PET</label>
+        <input type="text" class="form-control" name="pet_name" id="pet_name" placeholder="Pet Name" 
+        value="{{ form.pet_name.value | default_if_none:'' }}">    
+    </div>
 
-            <select name="gender" id = "id_gender">
-                <input type="radio" id="male" name="gender" option value="M">Male</option>
-                <input type="radio" id="female" name="gender" option value="F">Female</option>
-        
-    </div><br/>
-  
+    <fieldset class="form-group">
+        <label for="gender" class="form-label mt-4">성별</label>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="gender" id="male" value="M" checked="">
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="gender" id="female" value="F">
+            Female
+          </label>
+        </div>
+    </fieldset>
+
     <div class="form-group">
-        <label for="age">나이</label><br/>
-        <input type="text" class="form-control" name="age" id="age"
-        value="{{ form.age.value | default_if_none:'' }}">
-    </div><br/>
+        <label for="age" class="form-label mt-4">생일</label>
+        <input type="text" class="form-control" name="age" id="age" placeholder="YYYY-MM-DD" 
+        value="{{ form.age.value | default_if_none:'' }}">    
+    </div>
   
-    <div class="form-group">
-        <label for="size">분류</label><br/>
-        <select name="size">
-            <option value="">  -선택- </option>
-            <option value="S"> 소형견 </option>
-            <option value ="M"> 중형견 </option>
-            <option value ="L"> 대형견 </option>
-        </select>
-    </div><br/>
+
+    <fieldset class="form-group">
+        <label for="size" class="form-label mt-4">분류</label>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="size" id="S" value="S" checked="">
+            소형견
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="size" id="M" value="M">
+            중형견
+          </label>
+        </div>
+        <div class="form-check">
+            <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="size" id="L" value="L">
+            대형견
+            </label>
+        </div>
+    </fieldset>
   
-    <div class="form-group">
-        <label for="neutered">중성화</label><br>
-        <input type="radio" id="male" name="neutered" value="Y">
-            <label for="neutered">Yes</label><br>
-            <input type="radio" id="female" name="neutered" value="N">
-            <label for="neutered">No</label><br>
-    </div><br/>
+    <fieldset class="form-group">
+        <label for="neutered" class="form-label mt-4">중성화</label>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="neutered" id="Y" value="Y">
+            Yes
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" name="neutered" id="N" value="N" checked="">
+            No
+          </label>
+        </div>
+      </fieldset>
+    <!--유저 ID값을 넘김-->
     <input type = "hidden" id = "user" value = "{{form.user.value}}">
 
 
+    <input type = "submit" value = "등록" class='btn btn-primary'>
+    <input type = "reset" value = "취소" class='btn btn-primary' onclick="history.back(-1);">
 
-<input type="submit" value="enroll"><br/>
-<input type = "reset" value = "취소" onclick="history.back(-1);">
 
 </form>
+</html>
