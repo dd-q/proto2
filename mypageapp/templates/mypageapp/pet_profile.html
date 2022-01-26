@@ -1,15 +1,11 @@
 
 <h3> MY PET PROFILE </h3>
-<form method='POST'>
+<form method='POST' enctype="multipart/form-data">
     {% csrf_token %}
-    {% comment %} <label for="pet_img">pet 프사</label><br/>
-    <input type="file" class="form-control" name="pet_img" id="pet_img"
-            value="{{ form.pet_img.value}}">
-    <br/> {% endcomment %}
-
+    
     <div class="form-group">
-        <label for="pet_img">pet 프사
-        <img class="image" src="/media/{{ form.pet_img.value }}"/>
+        <label for="pet_img">
+        <img class="image" src="/media/pet_img/{{ form.pet_img.value }}"/>
         <input type="file" class="form-control" name="pet_img" id="pet_img"
             value="{{ form.pet_img.value | default_if_none:''}}">
         </label>
@@ -18,7 +14,7 @@
     <div class="form-group">
         <label for="pet_name">펫이름</label><br/>
         <input type="text" class="form-control" name="pet_name" id="pet_name"
-        value="{{ form.pet_name.value | default_if_none:'' }}">
+            value="{{ form.pet_name.value | default_if_none:'' }}">
     </div><br/>
     
     <div class="form-group">
@@ -65,3 +61,5 @@
 
 <input type="submit" value="enroll"><br/>
 <input type = "reset" value = "취소" onclick="history.back(-1);">
+
+</form>

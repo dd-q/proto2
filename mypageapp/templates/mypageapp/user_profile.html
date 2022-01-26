@@ -1,3 +1,9 @@
+
+<html>
+    <head>
+        {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
+    </head>
+
 <form method = "post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
@@ -35,8 +41,8 @@
     <input type = "submit" value = "수정" class='btn btn-primary'>
 
     
+{% comment %} </form> {% endcomment %}
 </form>
-
 <a href = "{% url 'mypageapp:create_pet' user.id %}"><button type="submit">MY PET 등록하기</button></a>
 <h3> {{pet.pet_img | default_if_none:''}}</h3>
 <h3>PET : {{pet.pet_name}}</h3>
@@ -44,5 +50,7 @@
 <h3>나이 : {{pet.age}}</h3>
 <h3>분류 : {{pet.size}}</h3>
 <h3>중성화 여부 : {{pet.neutered}}</h3>
+
 <a href = "{% url 'mypageapp:update_pet' user.id %}"><button type="submit">MY PET 정보 수정하기</button></a>
 
+</html>
