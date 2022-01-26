@@ -34,11 +34,13 @@
 
     
 </form>
+
 <a href = "{% url 'mypageapp:create_pet' user.id %}"><button type="submit">MY PET 등록하기</button></a>
-<h3> {{pet.pet_img | default_if_none:'abc'}}</h3>
-<h3> {{pet.pet_name}}</h3>
-<h3> {{pet.gender}}</h3>
-<h3> {{pet.age}}</h3>
-<h3> {{pet.size}}</h3>
-<h3> {{pet.neutered}}</h3>
+<h3> {{pet.pet_img | default_if_none:''}}</h3>
+<h3>PET : {{pet.pet_name}}</h3>
+<h3>성별 : {{pet.gender}}</h3>
+<h3>나이 : {{pet.age}}</h3>
+<h3>분류 : {{pet.size}}</h3>
+<h3>중성화 여부 : {{pet.neutered}}</h3>
+<a href = "{% url 'mypageapp:update_pet' user.id %}"><button type="submit">MY PET 정보 수정하기</button></a>
 

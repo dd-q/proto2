@@ -18,7 +18,7 @@ class Pet(models.Model):
     size = CharField(max_length=1, null=True, blank=True)
     neutered = CharField(max_length=1, null=True, blank=True)
     pet_img = models.ImageField(upload_to='%Y%m%d', null=True, blank = True)
-    # user = models.ForeignKey(User, unique=True, db_column='user_id', on_delete = models.SET_NULL)
+    # user = models.ForeignKey(User, unique=True, on_delete = models.CASCADE, null = True)
     user = models.OneToOneField(User,on_delete=models.CASCADE, null = True, blank = True)
     def __str__(self):
         return self.pet_name

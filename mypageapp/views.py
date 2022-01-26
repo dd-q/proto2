@@ -24,21 +24,42 @@ def update_user(request, id):
 
 
 def create_pet(request, id):
-    pet = Pet.objects.get(user_id = id)    
+    # pet = Pet.objects.get(user_id = id)    
     if request.method=='POST':
         form = PetForm(request.POST, request.FILES)
+        form.user = User.objects.get(id=id)
         if form.is_valid():
+            print(form.user)
             profile = form.save(commit=False)
+            profile.user = form.user
+            # print(id)
+            # print(profile.user)
             profile.save()
             return redirect('mypageapp:update_user', id = id)
         else:
             return HttpResponse('다시해라')
     else:
         form = PetForm()
+        # form.user = User.objects.get(id=id)
+        # form.user = id
+        # print(form.user)
         return render(request, 'mypageapp/pet_profile.html', 
         {'form':form},
-        
         )
+
+def update_pet(request, id):
+    profile = Pet.objects.get(user_id=id)
+    if request.method=='POST':
+        form = PetForm(request.POST, request.FILES, instance = profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.save()                          # ㅕㅑ
+            return redirect('mypageapp:update_user', id = id)
+    else:
+        form = PetForm(instance = profile)
+        return render(request, 'mypageapp/update_pet.html', {'form':form},
+        )
+
 
 # def show(request, id):
     pet = Pet.objects.get(user_id = id)
