@@ -8,12 +8,12 @@
     <br/> {% endcomment %}
 
     <div class="form-group">
-        <label for="pet_img">pet 프사</label>
-        <img class="image" src="{{ form.pet_img.value }}"/>
+        <label for="pet_img">pet 프사
+        <img class="image" src="/media/{{ form.pet_img.value }}"/>
         <input type="file" class="form-control" name="pet_img" id="pet_img"
             value="{{ form.pet_img.value | default_if_none:''}}">
+        </label>
     </div>
-    <br/>
 
     <div class="form-group">
         <label for="pet_name">펫이름</label><br/>

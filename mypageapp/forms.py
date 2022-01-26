@@ -13,4 +13,5 @@ class PetForm(forms.ModelForm):
     class Meta:
         model = Pet
         fields = '__all__'
-        # labels = {}
+        labels = {'pet_name':'펫이름', 'gender':'성별',
+            'size':'분류', 'neutered':'중성화', 'pet_img':'펫프사'}

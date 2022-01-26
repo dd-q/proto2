@@ -22,27 +22,20 @@ def update_user(request, id):
         return render(request, 'mypageapp/user_profile.html', {'form':form, 'pet':pet},
         )
 
-# Q1해결. try/excetp 문 이용해서 한 계정에 두 번 등록되지 않도록.
+# Q1해결. try/excetp 문 이용해서 한 계정에 pet 이 두 개 이상 등록되지 않도록.
 def create_pet(request, id):
-    # pet = Pet.objects.get(user_id = id)    
     if request.method=='POST':
         form = PetForm(request.POST, request.FILES)
-        form.user = User.objects.get(id=id)
         if form.is_valid():
-            print(form.user)
             profile = form.save(commit=False)
-            profile.user = form.user
-            # print(id)
-            # print(profile.user)
+            profile.user = User.objects.get(id=id)
             profile.save()
+            # print(profile.pet_img)
             return redirect('mypageapp:update_user', id = id)
         else:
             return HttpResponse('다시해라')
     else:
         form = PetForm()
-        # form.user = User.objects.get(id=id)
-        # form.user = id
-        # print(form.user)
         return render(request, 'mypageapp/pet_profile.html', 
         {'form':form},
         )
@@ -56,12 +49,10 @@ def update_pet(request, id):
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = form.user
-            
             profile.save()
             return redirect('mypageapp:update_user', id = id)
     else:
         form = PetForm(instance = profile)
-        print(form)
         return render(request, 'mypageapp/update_pet.html', {'form':form},
         )
 

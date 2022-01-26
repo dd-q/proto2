@@ -17,7 +17,7 @@ class Pet(models.Model):
     age = DateField(null=True, blank=True)
     size = CharField(max_length=1, null=True, blank=True)
     neutered = CharField(max_length=1, null=True, blank=True)
-    pet_img = models.ImageField(upload_to='pet_img', null=True, blank = True)
+    pet_img = models.FileField(upload_to='', null=True, blank = True)
     # user = models.ForeignKey(User, unique=True, on_delete = models.CASCADE, null = True)
     user = models.OneToOneField(User,on_delete=models.CASCADE, null = True, blank = True)
     def __str__(self):
