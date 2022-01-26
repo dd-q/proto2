@@ -22,6 +22,8 @@ def update_user(request, id):
         return render(request, 'mypageapp/user_profile.html', {'form':form, 'pet':pet},
         )
 
+
+
 # Q1해결. try/excetp 문 이용해서 한 계정에 pet 이 두 개 이상 등록되지 않도록.
 def create_pet(request, id):
     if request.method=='POST':
